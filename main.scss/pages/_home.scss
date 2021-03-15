@@ -1,0 +1,46 @@
+.section-about {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0;
+  // 95-75 vh från header = 20vh 95 = vh top-bottom 75= från vänster till höger
+  margin-top: -20vh;
+}
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url("../img/nat-4.jpg");
+  background-size: cover;
+
+  // vänder backgrundsbilden -7deg
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+
+  // väljer ut de child-element som är direkt child till klassen .section-features
+  & > * {
+    // gör så att bara bakgrundsbilden är skewed, och så att varje feature-box inte blir skewed
+    transform: skewY(7deg);
+  }
+}
+
+.section-tours {
+  background-color: $color-grey-light-1;
+  padding: 25rem 0 15rem;
+  margin-top: -10rem;
+}
+
+.section-stories {
+  position: relative;
+  padding: 15rem 0;
+
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+
+.book {
+  background-image: url("../img/nat-10.jpg");
+  background-size: cover;
+
+  height: 50rem;
+}

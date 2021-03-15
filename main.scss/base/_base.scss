@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+/* font-size sätts i html elementet sätter rem här så att man slipper onödiga media queries. med 10px blir 1 rem 10px. så nu kan jag ta alla deklarerade px värden delat med 10. rem gör det lättare att skapa en responsiv design */
+html {
+  // detta definierar vad 1 rem är
+  font-size: 62.5%;
+}
+
+body {
+  /* ändrar box modellen med total hight och total width  */
+  box-sizing: border-box;
+}

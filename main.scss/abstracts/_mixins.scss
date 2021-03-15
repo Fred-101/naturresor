@@ -1,0 +1,8 @@
+// Clearfix för float 
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

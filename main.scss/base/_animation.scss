@@ -1,0 +1,48 @@
+/* animation för hero rubrik, börjar på 0%, och slutar på 100% osynlig vid 0% med opacity 0, vid 100% visas animationen helt */
+@keyframes moveInLeft {
+  20% {
+    opacity: 0;
+    /* gör så att animationen börjar från vänster med X=horisontel-linje */
+    transform: translateX(-10rem);
+  }
+  /* får till hopp-animationen vid 80% med 10px, hoppar ut till höger med 20px sen tillbaka till orginal positionen */
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* Gör så att den hamnar på sin orginal position */
+    transform: translate(0);
+  }
+}
+@keyframes moveInRight {
+  20% {
+    opacity: 0;
+    /* gör så att animationen börjar från höger med X=horisontel-linje */
+    transform: translateX(10rem);
+  }
+  /* får till hopp-animationen vid 80% med 10px, hoppar ut till vänster med 10px sen tillbaka till orginal positionen */
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    /* Gör så att den hamnar på sin orginal position */
+    transform: translate(0);
+  }
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /* gör så att animationen börjar från höger med X=horisontel-linje */
+    transform: translateY(3rem);
+  }
+  /* får till hopp-animationen vid 80% med 10px, hoppar ut till vänster med 10px sen tillbaka till orginal positionen */
+  100% {
+    opacity: 1;
+    /* Gör så att den hamnar på sin orginal position */
+    transform: translateY(0);
+  }
+}

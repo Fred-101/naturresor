@@ -1,0 +1,50 @@
+.composition {
+  position: relative;
+
+  //elements
+  &__photo {
+    //gör bilderna responsiva
+    width: 55%;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+    border-radius: 2px;
+    // bilderna placeras till en referens vilket är den första föräldrern som den hittar, som har en t.ex position: relative;
+    position: absolute;
+    // gör det möjligt så att när man hovrar bilderna att bilderna placeras framför varandra,
+    z-index: 1;
+    transition: all 0.2s;
+    // bestämmer hur mycket utrymme som ska ges från outline/border
+    outline-offset: 1rem;
+
+    // modifiers = de olika bilderna
+    &--p1 {
+      left: 0;
+      top: -2rem;
+    }
+
+    &--p2 {
+      // börjar från höger, rör sig 0px från höger av containern= .composition
+      right: 0;
+      top: 2rem;
+    }
+
+    &--p3 {
+      left: 20%;
+      top: 10rem;
+    }
+
+    &:hover {
+      // outline är en linje som ritas runt elementen, på utsidan av borders
+      outline: 1rem solid $color-primary;
+      transform: scale(1.05) translateY(-.5rem);
+      box-shadow: 0 2.5rem 4rem rgba($color-black, .6);
+      // placerar den bildern som hovras framför den som ligger bakom
+      z-index: 2;
+    }
+  }
+
+  // .composition:hover composition__photo:not(:hover)
+  // skalar ner de bilderna som inte hovras
+  &:hover &__photo:not(:hover) {
+    transform: scale(.95);
+  }
+}

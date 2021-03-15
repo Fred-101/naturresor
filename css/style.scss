@@ -1,0 +1,190 @@
+@charset "UTF-8";
+/* */
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+/* font-size sätts i html elementet sätter rem här så att man slipper onödiga media queries. med 10px blir 1 rem 10px. så nu kan jag ta alla deklarerade px värden delat med 10. rem gör det lättare att skapa en responsiv design */
+html {
+  font-size: 62.5%; }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem;
+  /* ändrar box modellen med total hight och total width  */
+  box-sizing: border-box; }
+
+.header {
+  /* 95vh blir 95% av hela viewport */
+  height: 95vh;
+  /* gör hero bilden linear gradient från höger till botten */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /* gör så att bilden täcker upp hela viewport width på elementet */
+  background-size: cover;
+  /* försäkrar vilken viewport size det än är så stannar bilden till toppen av sidan */
+  background-position: top;
+  position: relative;
+  /* specificierar vilka koordinater som ska klippas, alltså alla hörn på bilden top-left, top-right, bottom-right, bottom-left x y, x y osv */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+
+.header__logo-box {
+  /* position absolute kräver position: relative på sitt child-element = header */
+  position: absolute;
+  top: 4rem;
+  left: 4rem; }
+
+.header__logo {
+  height: 3.5rem; }
+
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  /* Gör så att wrappern inte längre är i relation till parent element utan är i relation till sig själv */
+  transform: translate(-50%, -50%);
+  /* får knappen att centreras eftersom elementet nu är inline-block */
+  text-align: center; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* fix så att animationen inte hoppar till när den är klar */
+  backface-visibility: hidden;
+  /* skapar margin från h1 till knappen */
+  margin-bottom: 6rem; }
+
+/* span elementet är ett inline-element */
+.heading-primary--main {
+  /* gör span elementet till ett block-element, gör så att texten kommer på en ny rad */
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  /* kallar på animationen moveInLeft */
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* animation properties
+   animation-delay: 3s;
+   gör så att animationen händer 3 gånger
+   animation-iteration-count: 3; */ }
+
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.75rem;
+  /* shortcut command för animation, vilken animation, duration, och timing-function */
+  animation: moveInRight 1s ease-out; }
+
+/* animation för hero rubrik, börjar på 0%, och slutar på 100% osynlig vid 0% med opacity 0, vid 100% visas animationen helt */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /* gör så att animationen börjar från vänster med X=horisontel-linje */
+    transform: translateX(-10rem); }
+  /* får till hopp-animationen vid 80% med 10px, hoppar ut till höger med 20px sen tillbaka till orginal positionen */
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    /* Gör så att den hamnar på sin orginal position */
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /* gör så att animationen börjar från höger med X=horisontel-linje */
+    transform: translateX(10rem); }
+  /* får till hopp-animationen vid 80% med 10px, hoppar ut till vänster med 10px sen tillbaka till orginal positionen */
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    /* Gör så att den hamnar på sin orginal position */
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /* gör så att animationen börjar från höger med X=horisontel-linje */
+    transform: translateY(3rem); }
+  /* får till hopp-animationen vid 80% med 10px, hoppar ut till vänster med 10px sen tillbaka till orginal positionen */
+  100% {
+    opacity: 1;
+    /* Gör så att den hamnar på sin orginal position */
+    transform: translateY(0); } }
+
+/* :link=pseudo class. pseudoclass är ett speciellt stadie av en selektor link = a element. btn:visited = när man klikat på knappen en gång och ser knappen igen */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  /* första top-bottom andra left-right  */
+  padding: 1.5rem 4rem;
+  /* a element är inline så här behövs inline-block för att positionera den på en ny rad  */
+  display: inline-block;
+  border-radius: 10rem;
+  /* specificierar vilka properties jag vill animera med 0.2s */
+  /* transition måste vara på ursprungliga stadiet */
+  transition: all .2;
+  position: relative;
+  font-size: 1.6rem; }
+
+.btn:hover {
+  /* får knappen att röra sig vertikalt, negativt = upp */
+  transform: translateY(-3px);
+  /* 0 = X/horisontellt 1rem = Y/vertikalt, 2rem=blur */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+/* pseudoclassen :active = klickad, animationen är i relation till original positionen, inte hover stadiet */
+.btn:active {
+  transform: translateY(-1px);
+  /* gör så animationen känns närmare  */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+
+/* ::after beter sig som ett child element till knappen */
+.btn::after {
+  content: "";
+  /* måste skriva display: inline-block för att knappen är inline-block */
+  display: inline-block;
+  /* måste specificiera samma mått som knappen har */
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  /* gör så att animationen hamnar bakom knappen, absolute behöver en referens, alltså position relative i knappen visited */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* z-index bestämmer att elementet ska vara bakom knappen */
+  z-index: -1;
+  transition: all .4s; }
+
+.btn--white::after {
+  background-color: #fff; }
+
+/* animationen sker endast när man hovrat över btn,  */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0; }
+
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  /* automatiskt apllicerar styles från 0% inann animationen startar */
+  animation-fill-mode: backwards; }
